@@ -2,11 +2,22 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <nav className="bg-blue-600 p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="bg-slate-900 p-4">
+      <div className="container mx-auto flex justify-start items-center">
         <Link href="/" className="text-white text-2xl font-bold">
-          QR Code Generator
+          My Utilities
         </Link>
+        <div className="flex ml-4 space-x-6">
+          <Link href="/home" className="text-white hover:text-gray-300">
+            Products
+          </Link>
+          <Link href="/about" className="text-white hover:text-gray-300">
+            Why Us?
+          </Link>
+          <Link href="/contact" className="text-white hover:text-gray-300">
+            Contato
+          </Link>
+        </div>
       </div>
     </nav>
   );
