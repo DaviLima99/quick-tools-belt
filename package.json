@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "eact": "^0.0.1-security",
     "next": "15.1.4",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
+    "react-adsense": "^0.1.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
