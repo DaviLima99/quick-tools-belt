@@ -36,16 +36,16 @@ const Home = () => {
     return (
         <div>
             <Seo title="Quick Tools Belt" description='Description' />
-            <div className="min-h-screen bg-indigo-50">
+            <div className="min-h-screen bg-blue-50">
                 <Navbar />
                 <div className="container mx-auto p-4">
                     <div className="p-6 rounded-lg">
                         <h1 className="text-2xl font-bold mb-4">Gerar QR Code</h1>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Lado Esquerdo - Formulário */}
-                            <div className='bg-indigo-50 p-8 rounded-lg'>
-                                <div className='border-white mb-6 border-4 boder-solid rounded-full p-5 shadow-lg'>
-                                    <div className="flex p-3 rounded-full space-x-4 bg-white">
+                            <div className='bg-white p-8 rounded-lg'>
+                                <div className='mb-6 bounded-full p-5 '>
+                                    <div className="flex p-3 rounded-full space-x-4 bg-blue-50">
                                         {
                                             qrCodeTypes.map((qrType) => (
                                                 <button
@@ -66,14 +66,14 @@ const Home = () => {
 
                                 {
                                     inputType === "website" && (
-                                        <div className='border-white mb-6 border-4 boder-solid rounded-lg p-5 shadow-lg'>
-                                            <label className="block mb-2">Gerador de qr code para websites</label>
+                                        <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                            <label className="block mb-2 text-gray-500 font-medium">URL</label>
                                             <input
                                                 type="text"
                                                 value={inputValue}
                                                 onChange={(e) => setInputValue(e.target.value)}
                                                 placeholder="https://..."
-                                                className="w-full p-4 rounded-full bg-white mb-4 focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                                className="w-full p-4 rounded-full bg-white mb-4 border-solid - border-gray border-2 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                                 aria-label="Campo de entrada para gerar QR Code"
                                             />
                                             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
