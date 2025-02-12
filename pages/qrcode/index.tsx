@@ -4,6 +4,7 @@ import Seo from '../../components/Seo';
 import AdBanner from '../../components/AdBanner';
 import { qrCodeTypes } from '../../data/qrCodeOpt';
 import { QRCodeCanvas } from "qrcode.react";
+import AdsComponent from '@/components/AdsComponent';
 
 const QrCodeGenerator = () => {
     const [inputType, setInputType] = useState('website');
@@ -166,11 +167,10 @@ const QrCodeGenerator = () => {
 
     return (
         <div>
-
+            <AdsComponent dataAdSlot='213' />
             <div className="container mx-auto p-4">
                 <div className="p-6 rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
                         {/* Lado Esquerdo - Formulário */}
                         <div className='bg-white p-8 rounded-lg'>
                             <h1 className="text-2xl  text-violet-700 font-bold mb-4">{inputTypeLabel}</h1>
@@ -181,7 +181,7 @@ const QrCodeGenerator = () => {
                                             <button
                                                 id={qrType.id}
                                                 onClick={() => {
-                                                    setInputType(qrType.id); 
+                                                    setInputType(qrType.id);
                                                     setInputTypeLabel(qrType.label);
                                                 }}
                                                 className={`w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-300 
@@ -341,7 +341,7 @@ const QrCodeGenerator = () => {
                                         <button
                                             onClick={() => handleDownload('svg')}
                                             disabled={!inputValue}
-                                            
+
                                             className={`px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600 transition-colors duration-300 ${!inputValue ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         >
                                             Download SVG

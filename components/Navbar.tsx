@@ -9,14 +9,14 @@ const Navbar = () => {
         </Link>
         <div className="flex ml-4 space-x-6">
           <Link href="/" className="text-white hover:text-violet-300">
-            Products
+            Produtos
           </Link>
-          <Link href="/about" className="text-white hover:text-violet-300">
+          {/* <Link href="/about" className="text-white hover:text-violet-300">
             Why Us?
           </Link>
           <Link href="/contact" className="text-white hover:text-violet-300">
             Contato
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>
