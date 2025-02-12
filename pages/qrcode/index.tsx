@@ -7,15 +7,16 @@ import { QRCodeCanvas } from "qrcode.react";
 
 const QrCodeGenerator = () => {
     const [inputType, setInputType] = useState('website');
+    const [inputTypeLabel, setInputTypeLabel] = useState('QR para WebSites');
 
     const [url, setUrl] = useState('');
-    
+
     const [email, setEmail] = useState('');
     const [emailTitle, setEmailTitle] = useState('');
     const [emailBody, setEmailBody] = useState('');
 
     const [text, setText] = useState('');
-    
+
     const [whatsappNumber, setWhatsappNumber] = useState('');
     const [whatsappMessage, setWhatsappMessage] = useState('');
 
@@ -168,18 +169,21 @@ const QrCodeGenerator = () => {
 
             <div className="container mx-auto p-4">
                 <div className="p-6 rounded-lg">
-                    <h1 className="text-2xl  text-violet-700 font-bold mb-4">Gerar QR Code</h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                         {/* Lado Esquerdo - Formulário */}
                         <div className='bg-white p-8 rounded-lg'>
+                            <h1 className="text-2xl  text-violet-700 font-bold mb-4">{inputTypeLabel}</h1>
                             <div className='mb-6 bounded-full p-5 '>
                                 <div className="flex p-3 rounded-full space-x-4 bg-gray-100">
                                     {
                                         qrCodeTypes.map((qrType) => (
                                             <button
                                                 id={qrType.id}
-                                                onClick={() => setInputType(qrType.id)}
+                                                onClick={() => {
+                                                    setInputType(qrType.id); 
+                                                    setInputTypeLabel(qrType.label);
+                                                }}
                                                 className={`w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-300 
                                                 ${inputType == qrType.id ? 'bg-violet-500 text-white shadow-lg' : 'text-violet-400 bg-white'
                                                     }`}
@@ -209,7 +213,7 @@ const QrCodeGenerator = () => {
                                     </div>
                                 )
 
-                               
+
                             }
                             {
                                 inputType === "email" && (
@@ -310,34 +314,40 @@ const QrCodeGenerator = () => {
                                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
                                     <span className="ml-2">Gerando QR Code...</span>
                                 </div>
-                            ) : inputValue && !loading ? (
+                            ) : (
                                 <div className="flex flex-col items-center">
-                                    <label className="block mb-2 text-white mb-6 font-medium">Descarregue o QR Code</label>
+                                    <label className="block mb-2 text-white mb-6 font-medium">{!inputValue ? 'Seu QR Code ficará pronto aqui:' : 'Descarregue seu QR:'}</label>
                                     <div className='p-4 bg-white rounded-lg mb-6'>
-                                        <QRCodeCanvas value={inputValue} size={200} />
+                                        {inputValue && !loading ? (
+                                            <QRCodeCanvas value={inputValue} size={200} />
+                                        ) : (
+                                            <img
+                                                src="https://cdn-icons-png.flaticon.com/512/3081/3081329.png"
+                                                alt="QR Code"
+                                                className="w-48 h-48"
+                                            />
+
+                                        )}
                                     </div>
-                                 
+
                                     <div className="mt-4 space-x-4">
                                         <button
                                             onClick={() => handleDownload('png')}
-                                            className="px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600 transition-colors duration-300"
+                                            disabled={!inputValue}
+                                            className={`px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600 transition-colors duration-300 ${!inputValue ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         >
                                             Download PNG
                                         </button>
                                         <button
                                             onClick={() => handleDownload('svg')}
-                                            className="px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600 transition-colors duration-300"
+                                            disabled={!inputValue}
+                                            
+                                            className={`px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600 transition-colors duration-300 ${!inputValue ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         >
                                             Download SVG
                                         </button>
                                     </div>
                                 </div>
-                            ) : (
-                                <img
-                                    src="https://cdn-icons-png.flaticon.com/512/3081/3081329.png"
-                                    alt="QR Code"
-                                    className="w-48 h-48"
-                                />
                             )}
                         </div>
                     </div>
