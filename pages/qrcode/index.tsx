@@ -14,44 +14,98 @@ const QrCodeGenerator = () => {
 
     const [text, setText] = useState('');
     
-
-
     const [inputValue, setInputValue] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState({
+        email: '',
+        emailTitle: '',
+        emailBody: '',
+        text: '',
+        inputValue: ''
+    });
 
     const handleEmailValue = (email: string, emailTitle: string, emailBody: string) => {
         return `mailto:${email}?subject=${encodeURIComponent(emailTitle)}&body=${encodeURIComponent(emailBody)}`;
+    }
+
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            setError((prevError) => ({ ...prevError, email: 'Por favor, insira um e-mail válido.' }));
+            return false;
+        }
+        setError((prevError) => ({ ...prevError, email: '' }));
+        return true;
+    }
+
+    const validateEmailTitle = (emailTitle: string) => {
+        if (emailTitle.length < 3) {
+            setError((prevError) => ({ ...prevError, emailTitle: 'Por favor, insira um título com pelo menos 3 caracteres.' }));
+            return false;
+        }
+        setError((prevError) => ({ ...prevError, emailTitle: '' }));
+        return true;
+    }
+
+    const validateEmailBody = (emailBody: string) => {
+        if (emailBody.length < 3) {
+            setError((prevError) => ({ ...prevError, emailBody: 'Por favor, insira um corpo de e-mail com pelo menos 3 caracteres.' }));
+            return false;
+        }
+        setError((prevError) => ({ ...prevError, emailBody: '' }));
+        return true;
+    }
+
+    const validateText = (text: string) => {
+        if (text.length < 3) {
+            setError((prevError) => ({ ...prevError, text: 'Por favor, insira um texto com pelo menos 3 caracteres.' }));
+            return false;
+        }
+        setError((prevError) => ({ ...prevError, text: '' }));
+        return true;
     }
 
     const generateQRCode = () => {
         let qrValue = '';
         if (inputType === 'email') {
             if (!email || !emailTitle || !emailBody) {
-                setError('Por favor, preencha o campooooos.');
+                setError((prevError) => ({ ...prevError, email: 'Por favor, preencha o campo de e-mail.', emailTitle: 'Por favor, preencha o campo de título.', emailBody: 'Por favor, preencha o campo de corpo de e-mail.' }));
+                return;
+            }
+
+            if (!validateEmail(email) || !validateEmailTitle(emailTitle) || !validateEmailBody(emailBody)) {
+                return;
             }
 
             qrValue = handleEmailValue(email, emailTitle, emailBody);
         }
         else if (inputType === 'text') {
             if (!text) {
-                setError('Por favor, preencha o campo.');
+                setError((prevError) => ({ ...prevError, text: 'Por favor, preencha o campo de texto.' }));
+                return;
+            }
+
+            if (!validateText(text)) {
+                return;
             }
 
             qrValue = text;
         }
 
-
         setInputValue(qrValue);
         if (!inputValue.trim()) {
-            setError('Por favor, preencha o campo.');
+            setError((prevError) => ({ ...prevError, inputValue: 'Por favor, preencha o campo.' }));
             return;
         }
 
-
-
         setLoading(true);
-        setError('');
+        setError({
+            email: '',
+            emailTitle: '',
+            emailBody: '',
+            text: '',
+            inputValue: ''
+        });
 
         setTimeout(() => {
             setLoading(false);
@@ -104,7 +158,7 @@ const QrCodeGenerator = () => {
                                             className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
-                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                                        {error.inputValue && <p className="text-red-500 text-sm mt-2">{error.inputValue}</p>}
                                     </div>
                                 )
 
@@ -122,7 +176,7 @@ const QrCodeGenerator = () => {
                                             className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
-                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                                        {error.email && <p className="text-red-500 text-sm mt-2">{error.email}</p>}
 
                                         <label className="block mb-2 text-gray-500 font-medium">Inisira o título</label>
                                         <input
@@ -133,7 +187,7 @@ const QrCodeGenerator = () => {
                                             className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
-                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                                        {error.emailTitle && <p className="text-red-500 text-sm mt-2">{error.emailTitle}</p>}
 
                                         <label className="block mb-2 text-gray-500 font-medium">Corpo do e-mail</label>
                                         <textarea
@@ -143,6 +197,7 @@ const QrCodeGenerator = () => {
                                             className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
+                                        {error.emailBody && <p className="text-red-500 text-sm mt-2">{error.emailBody}</p>}
                                     </div>
                                 )
                             }
@@ -157,7 +212,7 @@ const QrCodeGenerator = () => {
                                             className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
-                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                                        {error.text && <p className="text-red-500 text-sm mt-2">{error.text}</p>}
                                     </div>
                                 )
                             }
