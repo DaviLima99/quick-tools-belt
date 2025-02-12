@@ -2,15 +2,15 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Seo from '../components/Seo';
 import AdBanner from '../components/AdBanner';
-import { qrCodeTypes } from '../data/QrCodeTyoes';
+import { qrCodeTypes } from '../data/qrCodeOpt';
 import { QrCode, Calculator, SquareAsteriskIcon } from "lucide-react";
 
 const Products = () => {
 
     const tools = [
         { id: "qrcode", name: "QR Code Generator", description: "Gere QR Codes personalizados facilmente.", icon: <QrCode size={20} />, link: "/qrcode" },
-        { id: "calculator", name: "Calculadora Financeira", description: "Uma calculadora simples e eficiente.", icon: <Calculator size={20} />, link: "/calculator" },
-        { id: "password", name: "Gerador de senha segura", description: "Encurte links longos para facilitar o compartilhamento.", icon: <SquareAsteriskIcon size={20} />, link: "/shortener" },
+        { id: "calculator", name: "Calculadora", description: "Uma calculadora simples e eficiente.", icon: <Calculator size={20} />, link: "/calculator" },
+        { id: "password", name: "Gerador de senha segura", description: "Encurte links longos para facilitar o compartilhamento.", icon: <SquareAsteriskIcon size={20} />, link: "/password" },
       ];
    const [selectedTool, setSelectedTool] = useState(tools[0]);
 

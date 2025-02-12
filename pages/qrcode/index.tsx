@@ -2,27 +2,56 @@ import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Seo from '../../components/Seo';
 import AdBanner from '../../components/AdBanner';
-import { qrCodeTypes } from '../../data/QrCodeTyoes';
+import { qrCodeTypes } from '../../data/qrCodeOpt';
+import { QRCodeCanvas } from "qrcode.react";
 
 const QrCodeGenerator = () => {
     const [inputType, setInputType] = useState('website');
+    
+    const [email, setEmail] = useState('');
+    const [emailTitle, setEmailTitle] = useState('');
+    const [emailBody, setEmailBody] = useState('');
+
+    const [text, setText] = useState('');
+    
+
+
     const [inputValue, setInputValue] = useState('');
-    const [qrCode, setQrCode] = useState('');
-    const [option, setOption] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    const handleEmailValue = (email: string, emailTitle: string, emailBody: string) => {
+        return `mailto:${email}?subject=${encodeURIComponent(emailTitle)}&body=${encodeURIComponent(emailBody)}`;
+    }
+
     const generateQRCode = () => {
+        let qrValue = '';
+        if (inputType === 'email') {
+            if (!email || !emailTitle || !emailBody) {
+                setError('Por favor, preencha o campooooos.');
+            }
+
+            qrValue = handleEmailValue(email, emailTitle, emailBody);
+        }
+        else if (inputType === 'text') {
+            if (!text) {
+                setError('Por favor, preencha o campo.');
+            }
+
+            qrValue = text;
+        }
+
+
+        setInputValue(qrValue);
         if (!inputValue.trim()) {
             setError('Por favor, preencha o campo.');
             return;
         }
 
+
+
         setLoading(true);
         setError('');
-
-        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(inputValue)}`;
-        setQrCode(qrCodeUrl);
 
         setTimeout(() => {
             setLoading(false);
@@ -40,6 +69,7 @@ const QrCodeGenerator = () => {
                 <div className="p-6 rounded-lg">
                     <h1 className="text-2xl  text-violet-700 font-bold mb-4">Gerar QR Code</h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                         {/* Lado Esquerdo - Formulário */}
                         <div className='bg-white p-8 rounded-lg'>
                             <div className='mb-6 bounded-full p-5 '>
@@ -77,6 +107,59 @@ const QrCodeGenerator = () => {
                                         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
                                     </div>
                                 )
+
+                               
+                            }
+                            {
+                                inputType === "email" && (
+                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                        <label className="block mb-2 text-gray-500 font-medium">Inisira o e-mail</label>
+                                        <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="E: example@mail.com"
+                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            aria-label="Campo de entrada para gerar QR Code"
+                                        />
+                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+                                        <label className="block mb-2 text-gray-500 font-medium">Inisira o título</label>
+                                        <input
+                                            type="text"
+                                            value={emailTitle}
+                                            onChange={(e) => setEmailTitle(e.target.value)}
+                                            placeholder="Título usado para o e-mail"
+                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            aria-label="Campo de entrada para gerar QR Code"
+                                        />
+                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+                                        <label className="block mb-2 text-gray-500 font-medium">Corpo do e-mail</label>
+                                        <textarea
+                                            value={emailBody}
+                                            onChange={(e) => setEmailBody(e.target.value)}
+                                            placeholder="Digite seu texto aqui..."
+                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            aria-label="Campo de entrada para gerar QR Code"
+                                        />
+                                    </div>
+                                )
+                            }
+                            {
+                                inputType === "text" && (
+                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                        <label className="block mb-2 text-gray-500 font-medium">Inisira seu texto</label>
+                                        <textarea
+                                            value={text}
+                                            onChange={(e) => setText(e.target.value)}
+                                            placeholder="Digite seu texto aqui..."
+                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            aria-label="Campo de entrada para gerar QR Code"
+                                        />
+                                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                                    </div>
+                                )
                             }
 
                             <button
@@ -99,15 +182,11 @@ const QrCodeGenerator = () => {
                                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
                                     <span className="ml-2">Gerando QR Code...</span>
                                 </div>
-                            ) : qrCode ? (
+                            ) : inputValue && !loading ? (
                                 <div className="flex flex-col items-center">
                                     <label className="block mb-2 text-white mb-6 font-medium">Descarregue o QR Code</label>
                                     <div className='p-4 bg-white rounded-lg mb-6'>
-                                        <img
-                                            src={qrCode}
-                                            alt="QR Code"
-                                            className="w-48 h-48 hover:scale-105 transition-transform duration-300"
-                                        />
+                                        <QRCodeCanvas value={inputValue} size={200} />
                                     </div>
                                  
                                     <div className="mt-4 space-x-4">
