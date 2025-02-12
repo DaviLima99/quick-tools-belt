@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Seo from '../../components/Seo';
-import AdBanner from '../../components/AdBanner';
 import { qrCodeTypes } from '../../data/qrCodeOpt';
 import { QRCodeCanvas } from "qrcode.react";
 import AdsComponent from '@/components/AdsComponent';
@@ -177,7 +176,7 @@ const QrCodeGenerator = () => {
                             <div className='mb-6 bounded-full p-5 '>
                                 <div className="flex p-3 rounded-full space-x-4 bg-gray-100">
                                     {
-                                        qrCodeTypes.map((qrType) => (
+                                        qrCodeTypes.map((qrType, index) => (
                                             <button
                                                 id={qrType.id}
                                                 onClick={() => {
@@ -300,11 +299,6 @@ const QrCodeGenerator = () => {
                             >
                                 Gerar QR Code
                             </button>
-                            <AdBanner
-                                data-ad-slot="7434970023"
-                                data-ad-format="auto"
-                                data-full-width-responsive="true"
-                            />
                         </div>
 
                         {/* Lado Direito - QR Code */}

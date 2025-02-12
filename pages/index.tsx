@@ -1,13 +1,5 @@
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
-import Seo from '../components/Seo';
-import AdBanner from '../components/AdBanner';
-import { qrCodeTypes } from '../data/qrCodeOpt';
 import { QrCode, Calculator, SquareAsteriskIcon } from "lucide-react";
-import QrCodeSvg from '../assets/qr-code.png';
-import Image from 'next/image';
-import Modal from '../components/Modal'; // Importe o componente Modals
-import AdsComponent from '@/components/AdsComponent';
 import Link from 'next/link';
 
 const Products = () => {
