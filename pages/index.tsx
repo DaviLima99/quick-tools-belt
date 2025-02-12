@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { QrCode, Calculator, SquareAsteriskIcon } from "lucide-react";
+import { QrCode, Calculator} from "lucide-react";
 import Link from 'next/link';
 
 const Products = () => {

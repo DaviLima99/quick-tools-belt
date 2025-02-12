@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 interface ModalProps {
     /**
      * Indica se o modal está aberto ou não.

@@ -1,19 +1,16 @@
 import { useEffect } from "react";
 
 const AdsComponent = (props) => {
-    const { dataAdSlot } = props;  
+    const { dataAdSlot } = props;
 
     useEffect(() => {
-
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            alert(e)
         }
 
-        catch (e) {
-
-        }
-
-    },[]);
+    }, []);
 
 
 
