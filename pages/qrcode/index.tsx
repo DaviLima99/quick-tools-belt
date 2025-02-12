@@ -7,6 +7,8 @@ import { QRCodeCanvas } from "qrcode.react";
 
 const QrCodeGenerator = () => {
     const [inputType, setInputType] = useState('website');
+
+    const [url, setUrl] = useState('');
     
     const [email, setEmail] = useState('');
     const [emailTitle, setEmailTitle] = useState('');
@@ -14,6 +16,9 @@ const QrCodeGenerator = () => {
 
     const [text, setText] = useState('');
     
+    const [whatsappNumber, setWhatsappNumber] = useState('');
+    const [whatsappMessage, setWhatsappMessage] = useState('');
+
     const [inputValue, setInputValue] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState({
@@ -21,11 +26,17 @@ const QrCodeGenerator = () => {
         emailTitle: '',
         emailBody: '',
         text: '',
+        whatsappNumber: '',
+        whatsappMessage: '',
         inputValue: ''
     });
 
     const handleEmailValue = (email: string, emailTitle: string, emailBody: string) => {
         return `mailto:${email}?subject=${encodeURIComponent(emailTitle)}&body=${encodeURIComponent(emailBody)}`;
+    }
+
+    const handleWhatsappValue = (whatsappNumber: string, whatsappMessage: string) => {
+        return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     }
 
     const validateEmail = (email: string) => {
@@ -65,6 +76,25 @@ const QrCodeGenerator = () => {
         return true;
     }
 
+    const validateWhatsappNumber = (whatsappNumber: string) => {
+        const whatsappNumberRegex = /^\d{8,15}$/;
+        if (!whatsappNumberRegex.test(whatsappNumber)) {
+            setError((prevError) => ({ ...prevError, whatsappNumber: 'Por favor, insira um número de WhatsApp válido.' }));
+            return false;
+        }
+        setError((prevError) => ({ ...prevError, whatsappNumber: '' }));
+        return true;
+    }
+
+    const validateWhatsappMessage = (whatsappMessage: string) => {
+        if (whatsappMessage.length < 3) {
+            setError((prevError) => ({ ...prevError, whatsappMessage: 'Por favor, insira uma mensagem com pelo menos 3 caracteres.' }));
+            return false;
+        }
+        setError((prevError) => ({ ...prevError, whatsappMessage: '' }));
+        return true;
+    }
+
     const generateQRCode = () => {
         let qrValue = '';
         if (inputType === 'email') {
@@ -91,6 +121,21 @@ const QrCodeGenerator = () => {
 
             qrValue = text;
         }
+        else if (inputType === 'website') {
+            qrValue = url;
+        }
+        else if (inputType === 'whatsapp') {
+            if (!whatsappNumber || !whatsappMessage) {
+                setError((prevError) => ({ ...prevError, whatsappNumber: 'Por favor, preencha o campo de número de WhatsApp.', whatsappMessage: 'Por favor, preencha o campo de mensagem de WhatsApp.' }));
+                return;
+            }
+
+            if (!validateWhatsappNumber(whatsappNumber) || !validateWhatsappMessage(whatsappMessage)) {
+                return;
+            }
+
+            qrValue = handleWhatsappValue(whatsappNumber, whatsappMessage);
+        }
 
         setInputValue(qrValue);
         if (!inputValue.trim()) {
@@ -104,6 +149,8 @@ const QrCodeGenerator = () => {
             emailTitle: '',
             emailBody: '',
             text: '',
+            whatsappNumber: '',
+            whatsappMessage: '',
             inputValue: ''
         });
 
@@ -152,8 +199,8 @@ const QrCodeGenerator = () => {
                                         <label className="block mb-2 text-gray-500 font-medium">Inisira seu site</label>
                                         <input
                                             type="text"
-                                            value={inputValue}
-                                            onChange={(e) => setInputValue(e.target.value)}
+                                            value={url}
+                                            onChange={(e) => setUrl(e.target.value)}
                                             placeholder="E: https://www.meusite.com/"
                                             className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
@@ -213,6 +260,32 @@ const QrCodeGenerator = () => {
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.text && <p className="text-red-500 text-sm mt-2">{error.text}</p>}
+                                    </div>
+                                )
+                            }
+                            {
+                                inputType === "whatsapp" && (
+                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                        <label className="block mb-2 text-gray-500 font-medium">Inisira o número de WhatsApp</label>
+                                        <input
+                                            type="text"
+                                            value={whatsappNumber}
+                                            onChange={(e) => setWhatsappNumber(e.target.value)}
+                                            placeholder="E: 5511999999999"
+                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            aria-label="Campo de entrada para gerar QR Code"
+                                        />
+                                        {error.whatsappNumber && <p className="text-red-500 text-sm mt-2">{error.whatsappNumber}</p>}
+
+                                        <label className="block mb-2 text-gray-500 font-medium">Inisira a mensagem de WhatsApp</label>
+                                        <textarea
+                                            value={whatsappMessage}
+                                            onChange={(e) => setWhatsappMessage(e.target.value)}
+                                            placeholder="Digite sua mensagem aqui..."
+                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            aria-label="Campo de entrada para gerar QR Code"
+                                        />
+                                        {error.whatsappMessage && <p className="text-red-500 text-sm mt-2">{error.whatsappMessage}</p>}
                                     </div>
                                 )
                             }

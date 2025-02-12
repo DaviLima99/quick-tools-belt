@@ -20,7 +20,7 @@ export const qrCodeTypes = [
         placeholder: 'Digite seu texto...',
     },
     {
-        id: 'contact',
+        id: 'whatsapp',
         icon: <Phone size={18}/>,
         label: 'Contato',
         placeholder: 'Digite seu número de telefone...',
