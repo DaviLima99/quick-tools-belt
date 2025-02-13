@@ -1,7 +1,11 @@
 import { useEffect } from "react";
+import { ComponentProps } from 'react';
 
-const AdsComponent = (props) => {
-    const { dataAdSlot } = props;
+interface Props extends ComponentProps<any> {
+  dataAdSlot: string;
+}
+
+const AdsComponent = ({ dataAdSlot }: Props) => {
 
     useEffect(() => {
         try {
