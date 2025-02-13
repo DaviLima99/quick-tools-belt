@@ -9,7 +9,8 @@ const AdsComponent = ({ dataAdSlot }: Props) => {
 
     useEffect(() => {
         try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            (window as any).adsbygoogle = (window as any).adsbygoogle || [];
+            (window as any).adsbygoogle.push({});
         } catch (e) {
             alert(e)
         }
