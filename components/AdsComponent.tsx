@@ -12,7 +12,7 @@ const AdsComponent = ({ dataAdSlot }: Props) => {
             (window as any).adsbygoogle = (window as any).adsbygoogle || [];
             (window as any).adsbygoogle.push({});
         } catch (e) {
-            alert(e)
+            console.log(e)
         }
 
     }, []);

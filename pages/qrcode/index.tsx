@@ -164,7 +164,8 @@ const QrCodeGenerator = () => {
 
     return (
         <div>
-            <AdsComponent dataAdSlot='213' />
+            <AdsComponent dataAdSlot='8455833841' />
+    
             <div className="container mx-auto p-4">
                 <div className="p-6 rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
