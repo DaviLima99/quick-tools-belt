@@ -63,6 +63,7 @@ const Products = () => {
                   {
                     tools.map((tool) => (
                       <button
+                        key={tool.id}
                         id={tool.id}
                         onClick={() => {
                           setSelectedTool(tool);
