@@ -10,7 +10,7 @@ const Layout = ({ children }: Props) => {
     return (
         <div>
             <Seo title="Quick Tools Belt" description='Description' />
-            <div className="min-h-screen bg-blue-50">
+            <div className="min-h-screen bg-gray-50">
                 <Navbar />
                 {children}
             </div>

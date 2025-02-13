@@ -5,8 +5,8 @@ interface ButtonProps {
 }
 
 const variants = {
-    default: "bg-blue-500 hover:bg-blue-600",
-    outline: "bg-gray-300 text-black hover:bg-gray-400",
+    default: "bg-violet-700 hover:bg-violet-800",
+    outline: "bg-violet-400 text-black hover:bg-violet-600",
 };
 
 const Button = ({ children, onClick, variant = "default" }: ButtonProps) => {
