@@ -47,7 +47,7 @@ const Products = () => {
     }
   ];
   const [selectedTool, setSelectedTool] = useState(tools[0]);
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar o modal
+  // const [isOpen, setIsOpen] = useState(false); // Estado para controlar o modal
 
   return (
     <>
@@ -92,11 +92,11 @@ const Products = () => {
                     Acesssar
                   </Link>
                   <button
-                    onClick={() => setIsOpen(true)}
-
+                    key={selectedTool.id}
+                    onClick={() => alert('Teste')}
                     className={`px-6 py-4 bg-violet-500 text-white rounded hover:bg-violet-600 transition-colors duration-300`}
                   >
-                    Acesssar
+                    Ver funcionalidades
                   </button>
                 </div>
                 
