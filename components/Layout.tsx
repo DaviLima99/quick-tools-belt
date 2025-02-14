@@ -9,8 +9,8 @@ interface Props {
 const Layout = ({ children }: Props) => {
     return (
         <>
-            <div className="min-h-screen bg-gray-50">
-                <Navbar />
+            <div className="bg-gray-50">
+                <Navbar/>
                 {children}
             </div>
         </>

@@ -6,22 +6,25 @@ declare global {
   }
 }
 
-interface AdBannerProps {
-  adClient: string;
-  adSlot: string;
-}
 
-const AdBanner: React.FC<AdBannerProps> = ({ adClient, adSlot }) => {
+type AdBannerTypes = {
+  dataAdSlot: string;
+  dataAdFormat: string;
+  dataFullWidthResponsive: boolean;
+};
+
+const AdBanner = ({
+  dataAdSlot,
+  dataAdFormat,
+  dataFullWidthResponsive,
+}: AdBannerTypes) => {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (!window.adsbygoogle) {
-        window.adsbygoogle = [];
-      }
-      try {
-        window.adsbygoogle.push({});
-      } catch (e) {
-        console.error("Erro ao carregar anúncios", e);
-      }
+    try {
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+        {}
+      );
+    } catch (error: any) {
+      console.log(error.message);
     }
   }, []);
 
@@ -29,10 +32,10 @@ const AdBanner: React.FC<AdBannerProps> = ({ adClient, adSlot }) => {
     <ins
       className="adsbygoogle"
       style={{ display: "block" }}
-      data-ad-client={adClient}
-      data-ad-slot={adSlot}
-      data-ad-format="auto"
-      data-full-width-responsive="true"
+      data-ad-client="ca-pub-9676944737838425"
+      data-ad-slot={dataAdSlot}
+      data-ad-format={dataAdFormat}
+      data-full-width-responsive={dataFullWidthResponsive.toString()}
     ></ins>
   );
 };

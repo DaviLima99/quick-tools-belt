@@ -11,7 +11,7 @@ const Dialog = ({ open, onClose, tool }: DialogProps) => {
     if (!open || !tool) return null;
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-5/6">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-3/5">
           <div className="text-violet-700 flex mb-5 justify-center">{tool.icon}</div>
           <h2 className="text-xl text-violet-700 font-bold">{tool.details.title}</h2>
           <p className="mt-2 text-violet-500">{tool.details.description}</p>
