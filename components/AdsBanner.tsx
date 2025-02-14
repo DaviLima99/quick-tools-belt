@@ -1,40 +1,40 @@
-"use client";
+import { useEffect } from "react";
 
-import React, { useEffect } from "react";
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
 
-type AdBannerTypes = {
-  dataAdSlot: string;
-  dataAdFormat: string;
-  dataFullWidthResponsive: boolean;
-};
+interface AdBannerProps {
+  adClient: string;
+  adSlot: string;
+}
 
-const AdsBanner = ({
-  dataAdSlot,
-  dataAdFormat,
-  dataFullWidthResponsive,
-}: AdBannerTypes) => {
+const AdBanner: React.FC<AdBannerProps> = ({ adClient, adSlot }) => {
   useEffect(() => {
-    try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-        {}
-      );
-    } catch (error: any) {
-      console.log("ERRO:")
-      console.log(error.message);
+    if (typeof window !== "undefined") {
+      if (!window.adsbygoogle) {
+        window.adsbygoogle = [];
+      }
+      try {
+        window.adsbygoogle.push({});
+      } catch (e) {
+        console.error("Erro ao carregar anúncios", e);
+      }
     }
   }, []);
 
   return (
     <ins
-      title="Banner1"
       className="adsbygoogle"
       style={{ display: "block" }}
-      data-ad-client="ca-pub-9676944737838425"
-      data-ad-slot={dataAdSlot}
-      data-ad-format={dataAdFormat}
-      data-full-width-responsive={dataFullWidthResponsive.toString()}
+      data-ad-client={adClient}
+      data-ad-slot={adSlot}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
     ></ins>
   );
 };
 
-export default AdsBanner;
+export default AdBanner;

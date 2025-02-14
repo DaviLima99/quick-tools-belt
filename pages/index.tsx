@@ -27,9 +27,8 @@ export default function HomePage() {
   return (
     <div className="">
       <AdsBanner
-                dataAdFormat="auto"
-                dataFullWidthResponsive={false}
-                dataAdSlot="5945483902"
+                adClient="ca-pub-9676944737838425"
+                adSlot="5945483902"
               />
               
       <div className="container mx-auto p-6 flex flex-col items-center text-center">
