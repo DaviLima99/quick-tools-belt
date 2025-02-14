@@ -3,6 +3,7 @@ import { QrCode, Calculator, Clock, Lock, DollarSign, FileText } from "lucide-re
 import Button from "@/components/Button";
 import Dialog from "@/components/Dialog";
 import tools from "@/data/tools";
+import AdsBanner from "@/components/AdsBanner";
 
 export interface Tool {
   id: string;
@@ -25,6 +26,12 @@ export default function HomePage() {
   
   return (
     <div className="">
+      <AdsBanner
+                dataAdFormat="auto"
+                dataFullWidthResponsive={false}
+                dataAdSlot="5945483902"
+              />
+              
       <div className="container mx-auto p-6 flex flex-col items-center text-center">
         <h1 className="text-3xl text-violet-700 font-bold mb-4">Ferramentas</h1>
         <p className="text-lg text-gray-600 mb-8 max-w-xl">

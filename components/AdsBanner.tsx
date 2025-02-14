@@ -19,12 +19,14 @@ const AdsBanner = ({
         {}
       );
     } catch (error: any) {
+      console.log("ERRO:")
       console.log(error.message);
     }
   }, []);
 
   return (
     <ins
+      title="Banner1"
       className="adsbygoogle"
       style={{ display: "block" }}
       data-ad-client="ca-pub-9676944737838425"
