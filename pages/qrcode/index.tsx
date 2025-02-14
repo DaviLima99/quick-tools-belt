@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { qrCodeTypes } from '../../data/qrCodeOpt';
+import { qrCodeTypes } from '../../data/qrOptions';
 import { QRCodeCanvas } from "qrcode.react";
-import AdsComponent from '@/components/AdsComponent';
+import AdsBanner from '@/components/AdsBanner';
 
 const QrCodeGenerator = () => {
     const [inputType, setInputType] = useState('website');
@@ -164,7 +164,11 @@ const QrCodeGenerator = () => {
 
     return (
         <div>
-            <AdsComponent dataAdSlot='8455833841' />
+            <AdsBanner
+                dataAdFormat="auto"
+                dataFullWidthResponsive={true}
+                dataAdSlot="5945483902"
+              />
     
             <div className="container mx-auto p-4">
                 <div className="p-6 rounded-lg">
