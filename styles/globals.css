@@ -7,4 +7,24 @@ body {
   }
 
 
-  
+.icon-bg {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  background: url('../assets/blob.svg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-bg-second {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  background: url('../assets/blob2.svg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
