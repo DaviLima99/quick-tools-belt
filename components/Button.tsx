@@ -1,5 +1,6 @@
 interface ButtonProps {
     children: React.ReactNode,
+    disable?: boolean,
     onClick?: () => void,
     variant: keyof typeof variants
 }
@@ -9,11 +10,11 @@ const variants = {
     outline: "bg-violet-400 text-black hover:bg-violet-600",
 };
 
-const Button = ({ children, onClick, variant = "default" }: ButtonProps) => {
+const Button = ({ children, onClick, disable=false, variant = "default" }: ButtonProps) => {
     const baseStyles = "px-4 py-2 rounded text-white";
 
     return (
-        <button className={`${baseStyles} ${variants[variant]}`} onClick={onClick}>
+        <button className={`${baseStyles} ${variants[variant]}`} disabled={disable} onClick={onClick}>
             {children}
         </button>
     );
