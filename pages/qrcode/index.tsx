@@ -176,7 +176,7 @@ const QrCodeGenerator = () => {
                         </div>
 
                         <div className="bg-slate-800 p-8 rounded-lg">
-                            <h1 className="text-2xl text-white mb-4">{inputTypeLabel}</h1>
+                            <h1 className="text-2xl font-bold mb-4 text-center">{inputTypeLabel}</h1>
                             <div className="w-full overflow-x-auto">
                                 <div className="flex gap-4 p-2 bg-slate-900 rounded-lg mb-5 justify-center md:justify-start">
                                     {qrCodeTypes.map((qrType, key) => (
