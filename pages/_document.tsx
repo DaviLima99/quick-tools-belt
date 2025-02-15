@@ -11,7 +11,7 @@ export default function Document() {
                     crossOrigin="anonymous"
                 />
             </Head>
-            <body>
+            <body className="bg-slate-900">
                 <Main />
                 <NextScript />
             </body>
