@@ -40,10 +40,10 @@ export default function HomePage() {
               {
                 tools.map((tool, index) => (
 
-                  <div key={tool.id} className={`border bg-white p-6 rounded-lg shadow-md w-80 h-90 flex flex-col items-center text-center ${!tool.enable ? 'opacity-50' : ''}`}>
+                  <div key={tool.id} className={`bg-slate-800 p-6 rounded-lg shadow-md w-80 h-90 flex flex-col items-center text-center ${!tool.enable ? 'opacity-50' : ''}`}>
                     <div className={`text-violet-700 mb-4 text-center ${tool.iconClass}`}>{tool.icon}</div>
-                    <h2 className="text-xl text-violet-700 font-semibold mb-2">{tool.name}</h2>
-                    <p className="mb-4 text-sm text-gray-600">{tool.description}</p>
+                    <h2 className="text-xl text-white font-semibold mb-2">{tool.name}</h2>
+                    <p className="mb-4 text-sm text-gray-100">{tool.description}</p>
                     <div className="flex gap-2 mt-auto">
                       <Button variant="default" disable={!tool.enable}><a href={tool.enable ? tool.link : "#"}>Acessar</a></Button>
                       <Button variant="outline" onClick={() => setSelectedTool(tool)}>Ver detalhes</Button>

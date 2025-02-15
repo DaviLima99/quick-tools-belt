@@ -175,10 +175,10 @@ const QrCodeGenerator = () => {
                             />
                         </div>
 
-                        <div className="bg-white p-8 rounded-lg">
-                            <h1 className="text-2xl text-violet-700 mb-4">{inputTypeLabel}</h1>
+                        <div className="bg-slate-800 p-8 rounded-lg">
+                            <h1 className="text-2xl text-white mb-4">{inputTypeLabel}</h1>
                             <div className="w-full overflow-x-auto">
-                                <div className="flex gap-4 p-2 bg-gray-100 rounded-lg justify-center md:justify-start">
+                                <div className="flex gap-4 p-2 bg-slate-900 rounded-lg mb-5 justify-center md:justify-start">
                                     {qrCodeTypes.map((qrType, key) => (
                                         <button
                                             key={key}
@@ -188,7 +188,7 @@ const QrCodeGenerator = () => {
                                                 setInputTypeLabel(qrType.label);
                                             }}
                                             className={`w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-300 
-              ${inputType === qrType.id ? 'bg-violet-500 text-white shadow-lg' : 'text-violet-400 bg-white'}
+              ${inputType === qrType.id ? 'bg-violet-500 text-white shadow-lg' : 'text-gray-400 bg-slate-800'}
             `}
                                         >
                                             {qrType.icon}
@@ -200,14 +200,14 @@ const QrCodeGenerator = () => {
 
                             {
                                 inputType === "website" && (
-                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
-                                        <label className="block mb-2 text-gray-500 font-medium">Inisira seu site</label>
+                                    <div className='border-slate-700 mb-6 border-2 boder-solid rounded-lg p-5'>
+                                        <label className="block mb-2 text-gray-200 font-medium">Inisira seu site</label>
                                         <input
                                             type="text"
                                             value={url}
                                             onChange={(e) => setUrl(e.target.value)}
                                             placeholder="E: https://www.meusite.com/"
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.inputValue && <p className="text-red-500 text-sm mt-2">{error.inputValue}</p>}
@@ -218,14 +218,14 @@ const QrCodeGenerator = () => {
                             }
                             {
                                 inputType === "email" && (
-                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                    <div className='border-slate-700 mb-6 border-2 boder-solid rounded-lg p-5'>
                                         <label className="block mb-2 text-gray-500 font-medium">Inisira o e-mail</label>
                                         <input
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             placeholder="E: example@mail.com"
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.email && <p className="text-red-500 text-sm mt-2">{error.email}</p>}
@@ -236,7 +236,7 @@ const QrCodeGenerator = () => {
                                             value={emailTitle}
                                             onChange={(e) => setEmailTitle(e.target.value)}
                                             placeholder="Título usado para o e-mail"
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.emailTitle && <p className="text-red-500 text-sm mt-2">{error.emailTitle}</p>}
@@ -246,7 +246,7 @@ const QrCodeGenerator = () => {
                                             value={emailBody}
                                             onChange={(e) => setEmailBody(e.target.value)}
                                             placeholder="Digite seu texto aqui..."
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.emailBody && <p className="text-red-500 text-sm mt-2">{error.emailBody}</p>}
@@ -255,13 +255,13 @@ const QrCodeGenerator = () => {
                             }
                             {
                                 inputType === "text" && (
-                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                    <div className='border-slate-700 mb-6 border-2 boder-solid rounded-lg p-5'>
                                         <label className="block mb-2 text-gray-500 font-medium">Inisira seu texto</label>
                                         <textarea
                                             value={text}
                                             onChange={(e) => setText(e.target.value)}
                                             placeholder="Digite seu texto aqui..."
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.text && <p className="text-red-500 text-sm mt-2">{error.text}</p>}
@@ -270,14 +270,14 @@ const QrCodeGenerator = () => {
                             }
                             {
                                 inputType === "whatsapp" && (
-                                    <div className='border-gray mb-6 border-2 boder-solid rounded-lg p-5'>
+                                    <div className='border-slate-700 mb-6 border-2 boder-solid rounded-lg p-5'>
                                         <label className="block mb-2 text-gray-500 font-medium">Inisira o número de WhatsApp</label>
                                         <input
                                             type="text"
                                             value={whatsappNumber}
                                             onChange={(e) => setWhatsappNumber(e.target.value)}
                                             placeholder="E: 5511999999999"
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.whatsappNumber && <p className="text-red-500 text-sm mt-2">{error.whatsappNumber}</p>}
@@ -287,7 +287,7 @@ const QrCodeGenerator = () => {
                                             value={whatsappMessage}
                                             onChange={(e) => setWhatsappMessage(e.target.value)}
                                             placeholder="Digite sua mensagem aqui..."
-                                            className="w-full p-4 rounded-lg bg-gray-100 mb-4 text-black border-gray focus:outline-none focus:ring-1 focus:ring-violet-300"
+                                            className="w-full p-4 rounded-lg bg-slate-700 mb-4 text-white border-slate-800 focus:outline-none focus:ring-1 focus:ring-violet-300"
                                             aria-label="Campo de entrada para gerar QR Code"
                                         />
                                         {error.whatsappMessage && <p className="text-red-500 text-sm mt-2">{error.whatsappMessage}</p>}
