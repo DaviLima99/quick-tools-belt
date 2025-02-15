@@ -29,13 +29,13 @@ export default function HomePage() {
       <main className="container mx-auto mt-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-8/12 px-4 mb-8">
-            <div className="bg-black mb-5">
+            {/* <div className="bg-black mb-5">
               <AdsBanner
                 dataAdFormat="auto"
                 dataFullWidthResponsive={true}
                 dataAdSlot="8455833841"
               />
-            </div>
+            </div> */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
               {
                 tools.map((tool, index) => (
@@ -63,26 +63,6 @@ export default function HomePage() {
                 dataFullWidthResponsive={true}
                 dataAdSlot="8455833841"
               />
-            </div>
-            <div className="bg-gray-100 px-4 py-6 rounded">
-              <h3 className="text-lg font-bold mb-2">Categories</h3>
-              <ul className="list-disc list-inside">
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-gray-900">
-                    Technology
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-gray-900">
-                    Travel
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-gray-900">
-                    Food
-                  </a>
-                </li>
-              </ul>
             </div>
             <div className="bg-black mt-5">
               <AdsBanner
