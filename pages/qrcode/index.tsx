@@ -164,10 +164,13 @@ const QrCodeGenerator = () => {
 
     return (
         <div>
-            <AdsBanner
-                adClient="ca-pub-9676944737838425"
-                adSlot="5945483902"
+            <div className="bg-black mt-5">
+              <AdsBanner
+                dataAdFormat="auto"
+                dataFullWidthResponsive={true}
+                dataAdSlot="5945483902"
               />
+            </div>
             <div className='flex justify-center mt-4 bg-black'>
 
             </div>
