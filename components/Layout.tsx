@@ -9,7 +9,7 @@ interface Props {
 const Layout = ({ children }: Props) => {
     return (
         <>
-            <div className="bg-gray-50">
+            <div className="bg-slate-900">
                 <Navbar/>
                 {children}
             </div>
