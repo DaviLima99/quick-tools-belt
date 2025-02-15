@@ -163,43 +163,39 @@ const QrCodeGenerator = () => {
     };
 
     return (
-        <div>
-            <AdsBanner
-                adClient="ca-pub-9676944737838425"
-                adSlot="5945483902"
-              />
-            <div className='flex justify-center mt-4 bg-black'>
+        <>
+            <main className="container mx-auto mt-8">
+                <div className="flex flex-wrap justify-between">
+                    <div className="w-full md:w-8/12 px-4 mb-8">
+                        <div className="bg-black mt-5 mb-5">
+                            <AdsBanner
+                                dataAdFormat="auto"
+                                dataFullWidthResponsive={true}
+                                dataAdSlot="5945483902"
+                            />
+                        </div>
 
-            </div>
-
-            <div className="container mx-auto p-4">
-                <div className="p-6 rounded-lg">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Lado Esquerdo - Formulário */}
-                        <div className='bg-white p-8 rounded-lg'>
-                            <h1 className="text-2xl  text-violet-700 font-bold mb-4">{inputTypeLabel}</h1>
-                            <div className='mb-6 bounded-full p-5 '>
-                                <div className="flex p-3 rounded-full space-x-4 bg-gray-100">
-                                    {
-                                        qrCodeTypes.map((qrType, key) => (
-                                            <button
-                                                key={key}
-                                                id={qrType.id}
-                                                onClick={() => {
-                                                    setInputType(qrType.id);
-                                                    setInputTypeLabel(qrType.label);
-                                                }}
-                                                className={`w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-300 
-                                                ${inputType == qrType.id ? 'bg-violet-500 text-white shadow-lg' : 'text-violet-400 bg-white'
-                                                    }`}
-                                            >
-                                                {qrType.icon}
-                                            </button>
-                                        ))
-                                    }
+                        <div className="bg-white p-8 rounded-lg">
+                            <h1 className="text-2xl text-violet-700 mb-4">{inputTypeLabel}</h1>
+                            <div className="w-full overflow-x-auto">
+                                <div className="flex gap-4 p-2 bg-gray-100 rounded-lg justify-center md:justify-start">
+                                    {qrCodeTypes.map((qrType, key) => (
+                                        <button
+                                            key={key}
+                                            id={qrType.id}
+                                            onClick={() => {
+                                                setInputType(qrType.id);
+                                                setInputTypeLabel(qrType.label);
+                                            }}
+                                            className={`w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-300 
+              ${inputType === qrType.id ? 'bg-violet-500 text-white shadow-lg' : 'text-violet-400 bg-white'}
+            `}
+                                        >
+                                            {qrType.icon}
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
-
                             <h2 className="block text-1xl font-bold mb-2">Preencha o conteúdo</h2>
 
                             {
@@ -306,9 +302,17 @@ const QrCodeGenerator = () => {
                                 Gerar QR Code
                             </button>
                         </div>
+                    </div>
+                    <div className="w-full md:w-4/12 px-4 mb-8">
+                        <div className="bg-black mt-5 mb-5">
+                            <AdsBanner
+                                dataAdFormat="auto"
+                                dataFullWidthResponsive={true}
+                                dataAdSlot="5945483902"
+                            />
+                        </div>
 
-                        {/* Lado Direito - QR Code */}
-                        <div className="flex justify-center items-center bg-violet-600 p-4 rounded-lg">
+                        <div className='bg-violet-700 p-8 rounded-lg'>
                             {loading ? (
                                 <div className="flex justify-center items-center">
                                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
@@ -352,9 +356,12 @@ const QrCodeGenerator = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </main>
 
+
+
+
+        </>
     );
 };
 
