@@ -43,12 +43,12 @@ const tools: Tool[] = [
     },
     {
       id: "currency",
-      enable: false,
+      enable: true,
       name: "Conversor de Moedas",
       description: "Converta moedas em tempo real com taxas atualizadas.",
       icon: <DollarSign size={40} />, 
       link: "/currency",
-      iconClass: 'icon-bg-second text-green-700',
+      iconClass: 'icon-bg text-white',
       details: {
         title: "Conversor de Moedas Online",
         description: "Ferramenta para converter valores entre diferentes moedas com taxas de câmbio atualizadas.",
@@ -86,7 +86,7 @@ const tools: Tool[] = [
       description: "Gere textos automáticos e personalizáveis.",
       icon: <FileText size={40} />, 
       link: "/textgen",
-      iconClass: 'icon-bg-second text-orange-700',
+      iconClass: 'icon-bg text-white',
       details: {
         title: "Gerador de Texto Automático",
         description: "Criação automática de textos para diversas finalidades.",

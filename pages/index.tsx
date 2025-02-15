@@ -29,13 +29,13 @@ export default function HomePage() {
       <main className="container mx-auto mt-8">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-8/12 px-4 mb-8">
-            {/* <div className="bg-black mb-5">
+            <div className="bg-black mb-5">
               <AdsBanner
                 dataAdFormat="auto"
                 dataFullWidthResponsive={true}
                 dataAdSlot="8455833841"
               />
-            </div> */}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
               {
                 tools.map((tool, index) => (
@@ -45,8 +45,10 @@ export default function HomePage() {
                     <h2 className="text-xl text-white font-semibold mb-2">{tool.name}</h2>
                     <p className="mb-4 text-sm text-gray-100">{tool.description}</p>
                     <div className="flex gap-2 mt-auto">
-                      <Button variant="default" disable={!tool.enable}><a href={tool.enable ? tool.link : "#"}>Acessar</a></Button>
-                      <Button variant="outline" onClick={() => setSelectedTool(tool)}>Ver detalhes</Button>
+                      <a href={tool.enable ? tool.link : "#"}>
+                        <Button variant="default" disable={!tool.enable}>Acessar</Button>
+                      </a>
+                      <Button variant="outline" disable={!tool.enable} onClick={() => setSelectedTool(tool)}>Ver detalhes</Button>
                     </div>
                   </div>
 
