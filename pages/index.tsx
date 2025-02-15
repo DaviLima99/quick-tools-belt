@@ -73,6 +73,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <Dialog open={!!selectedTool} onClose={() => setSelectedTool(undefined)} tool={selectedTool ?? undefined} />
       </main>
     </>
   );
