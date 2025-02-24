@@ -24,7 +24,7 @@ const tools: Tool[] = [
     },
     {
       id: "password",
-      enable: false,
+      enable: true,
       name: "Gerador de Senha",
       description: "Crie senhas seguras e aleatórias instantaneamente.",
       icon: <Lock size={40} />, 
