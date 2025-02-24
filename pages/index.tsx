@@ -36,7 +36,7 @@ export default function HomePage() {
                 dataAdSlot="8455833841"
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 justify-center">
               {
                 tools.map((tool, index) => (
 

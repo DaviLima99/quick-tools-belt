@@ -56,7 +56,7 @@ export default function CurrencyConverter() {
                     <select
                       value={fromCurrency}
                       onChange={(e) => setFromCurrency(e.target.value)}
-                      className="border-slate-800 p-2 rounded w-48 bg-slate-700 focus:outline-none focus:ring-1 focus:ring-violet-300 "
+                      className="border-slate-800 p-2 rounded w-24 md:w-48 bg-slate-700 focus:outline-none focus:ring-1 focus:ring-violet-300 "
                     >
                       {currencies.map((currency) => (
                         <option key={currency} value={currency}>{currency}</option>
@@ -72,7 +72,7 @@ export default function CurrencyConverter() {
                     <select
                       value={toCurrency}
                       onChange={(e) => setToCurrency(e.target.value)}
-                      className="border-slate-800 p-2 rounded w-48 bg-slate-700 focus:outline-none focus:ring-1 focus:ring-violet-300 "
+                      className="border-slate-800 p-2 rounded w-24 md:w-48 bg-slate-700 focus:outline-none focus:ring-1 focus:ring-violet-300 "
                     >
                       {currencies.map((currency) => (
                         <option key={currency} value={currency}>{currency}</option>
