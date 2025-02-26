@@ -158,9 +158,40 @@ const QrCodeGenerator = () => {
         }, 1000);
     };
 
-    const handleDownload = (format: 'png' | 'svg') => {
-        alert(`Download do QR Code em ${format.toUpperCase()} iniciado!`);
+    const handleDownload = (format: string) => {
+        const canvas = document.querySelector('canvas');
+        if (!canvas) {
+            alert('QR Code não encontrado!');
+            return;
+        }
+        
+        if (format === 'png') {
+            const pngUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = pngUrl;
+            link.download = 'qrcode.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else if (format === 'svg') {
+            const svgElement = document.querySelector('svg');
+            if (!svgElement) {
+                alert('Erro ao gerar SVG!');
+                return;
+            }
+            const serializer = new XMLSerializer();
+            const svgBlob = new Blob([serializer.serializeToString(svgElement)], { type: 'image/svg+xml' });
+            const svgUrl = URL.createObjectURL(svgBlob);
+            const link = document.createElement('a');
+            link.href = svgUrl;
+            link.download = 'qrcode.svg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(svgUrl);
+        }
     };
+    
 
     return (
         <>
